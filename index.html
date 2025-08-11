@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,16 +7,23 @@
 <script>
 function enviarUbicacion() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(pos) {
-            let lat = pos.coords.latitude.toFixed(6);
-            let lon = pos.coords.longitude.toFixed(6);
-            let linkMaps = `https://www.google.com/maps?q=${lat},${lon}`;
-            let mensaje = `Hola, esta es mi ubicación actual: ${linkMaps}`;
-            let urlWhatsApp = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
-            window.location.href = urlWhatsApp;
-        }, function(error) {
-            alert("No se pudo obtener la ubicación: " + error.message);
-        });
+        navigator.geolocation.getCurrentPosition(
+            function(pos) {
+                let lat = pos.coords.latitude.toFixed(6);
+                let lon = pos.coords.longitude.toFixed(6);
+                let linkMaps = `https://www.google.com/maps?q=${lat},${lon}`;
+                let mensaje = `Hola, esta es mi ubicación actual: ${linkMaps}`;
+                let urlWhatsApp = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+                window.location.href = urlWhatsApp;
+            },
+            function(error) {
+                if (error.code === error.PERMISSION_DENIED) {
+                    alert("Debes permitir el acceso a la ubicación para enviar tu posición por WhatsApp.");
+                } else {
+                    alert("No se pudo obtener la ubicación: " + error.message);
+                }
+            }
+        );
     } else {
         alert("Tu navegador no soporta geolocalización.");
     }
@@ -27,4 +35,3 @@ function enviarUbicacion() {
 <button onclick="enviarUbicacion()">Enviar mi ubicación</button>
 </body>
 </html>
-
