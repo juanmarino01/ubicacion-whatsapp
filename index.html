@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Enviar ubicación por WhatsApp</title>
+<title>Solicitud Servicio de Transporte  </title>
 <script>
 function enviarUbicacion() {
     if (navigator.geolocation) {
@@ -13,7 +12,7 @@ function enviarUbicacion() {
                 let lon = pos.coords.longitude.toFixed(6);
                 let linkMaps = `https://www.google.com/maps?q=${lat},${lon}`;
                 let mensaje = `Hola, esta es mi ubicación actual: ${linkMaps}`;
-                let urlWhatsApp = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+                let urlWhatsApp = `https://wa.me/593981687102?text=${encodeURIComponent(mensaje)}`;
                 window.location.href = urlWhatsApp;
             },
             function(error) {
@@ -35,3 +34,4 @@ function enviarUbicacion() {
 <button onclick="enviarUbicacion()">Enviar mi ubicación</button>
 </body>
 </html>
+
