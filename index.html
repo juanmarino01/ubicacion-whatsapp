@@ -11,7 +11,7 @@ function enviarUbicacion() {
                 let lat = pos.coords.latitude.toFixed(6);
                 let lon = pos.coords.longitude.toFixed(6);
                 let linkMaps = `https://www.google.com/maps?q=${lat},${lon}`;
-                let mensaje = `Hola, esta es mi ubicación actual: ${linkMaps}`;
+                let mensaje = `Solicito unidad, esta es mi ubicación actual: ${linkMaps}`;
                 let urlWhatsApp = `https://wa.me/593981687102?text=${encodeURIComponent(mensaje)}`;
                 window.location.href = urlWhatsApp;
             },
