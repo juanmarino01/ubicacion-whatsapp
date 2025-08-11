@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Enviar ubicación por WhatsApp</title>
+<script>
+function enviarUbicacion() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            let lat = pos.coords.latitude.toFixed(6);
+            let lon = pos.coords.longitude.toFixed(6);
+            let linkMaps = `https://www.google.com/maps?q=${lat},${lon}`;
+            let mensaje = `Hola, esta es mi ubicación actual: ${linkMaps}`;
+            let urlWhatsApp = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+            window.location.href = urlWhatsApp;
+        }, function(error) {
+            alert("No se pudo obtener la ubicación: " + error.message);
+        });
+    } else {
+        alert("Tu navegador no soporta geolocalización.");
+    }
+}
+</script>
+</head>
+<body>
+<h2>Enviar ubicación actual por WhatsApp</h2>
+<button onclick="enviarUbicacion()">Enviar mi ubicación</button>
+</body>
+</html>
+
